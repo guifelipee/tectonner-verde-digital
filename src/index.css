@@ -119,12 +119,7 @@
   }
 
   .service-card {
-    @apply premium-card relative overflow-hidden group;
-  }
-
-  .service-card::before {
-    content: '';
-    @apply absolute inset-0 bg-gradient-to-br from-tectonner-green/5 to-tectonner-blue/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500;
+    @apply premium-card relative overflow-hidden;
   }
 
   /* Advanced Gradients */
