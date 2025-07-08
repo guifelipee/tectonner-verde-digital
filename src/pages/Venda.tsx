@@ -96,16 +96,25 @@ const Venda = () => {
     <div className="min-h-screen bg-gray-50">
       <Header />
 
-      {/* Hero Section */}
-      <section className="pt-24 pb-16 px-4 bg-gradient-to-r from-tectonner-green to-green-600 text-white">
-        <div className="container mx-auto text-center max-w-4xl">
-          <div className="flex items-center justify-center mb-6">
-            <ShoppingCart className="w-12 h-12 mr-4" />
-            <h1 className="text-5xl md:text-6xl font-bold">Venda</h1>
+      {/* Hero Banner */}
+      <section className="relative h-80 overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url('https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=1200&h=600&fit=crop')`
+          }}
+        />
+        <div className="absolute inset-0 bg-black/60" />
+        <div className="relative z-10 container mx-auto px-4 h-full flex items-center justify-center text-center">
+          <div className="max-w-4xl animate-fade-in">
+            <div className="w-16 h-16 mx-auto mb-6 bg-tectonner-green/90 rounded-2xl flex items-center justify-center backdrop-blur-sm">
+              <ShoppingCart className="w-8 h-8 text-white" />
+            </div>
+            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">Venda</h1>
+            <p className="text-xl md:text-2xl text-white/90 font-light leading-relaxed">
+              Produtos de qualidade com os melhores preços e garantia TECTONNER
+            </p>
           </div>
-          <p className="text-xl md:text-2xl font-light">
-            Produtos de qualidade com os melhores preços
-          </p>
         </div>
       </section>
 

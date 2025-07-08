@@ -50,13 +50,20 @@ const QuemSomos = () => {
     <div className="min-h-screen bg-white">
       <Header />
 
-      {/* Hero Section */}
-      <section className="pt-24 pb-16 px-4 bg-gradient-to-r from-tectonner-green to-green-600 text-white">
-        <div className="container mx-auto text-center max-w-4xl">
-          <div className="fade-in-on-scroll">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">Quem Somos</h1>
-            <p className="text-xl md:text-2xl font-light">
-              Conheça nossa história e nossos valores
+      {/* Hero Banner */}
+      <section className="relative h-80 overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1200&h=600&fit=crop')`
+          }}
+        />
+        <div className="absolute inset-0 bg-tectonner-green/80" />
+        <div className="relative z-10 container mx-auto px-4 h-full flex items-center justify-center text-center">
+          <div className="max-w-4xl animate-fade-in">
+            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">Quem Somos</h1>
+            <p className="text-xl md:text-2xl text-white/90 font-light leading-relaxed">
+              Conheça nossa história, valores e compromisso com a sustentabilidade
             </p>
           </div>
         </div>

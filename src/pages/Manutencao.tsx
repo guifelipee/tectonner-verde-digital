@@ -8,26 +8,26 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
-import { Wrench, Clock, Shield, Star } from "lucide-react";
+import { Wrench, CheckCircle, Clock, Users } from "lucide-react";
 
 const Manutencao = () => {
   const [formData, setFormData] = useState({
     nome: "",
     email: "",
     telefone: "",
-    tipoEquipamento: "",
+    equipamento: "",
     marca: "",
     modelo: "",
     problema: "",
     urgencia: ""
   });
-  
+
   const { toast } = useToast();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!formData.nome || !formData.email || !formData.telefone || !formData.tipoEquipamento || !formData.problema) {
+    if (!formData.nome || !formData.email || !formData.telefone || !formData.equipamento || !formData.problema) {
       toast({
         title: "Erro",
         description: "Por favor, preencha todos os campos obrigatórios.",
@@ -38,14 +38,14 @@ const Manutencao = () => {
 
     toast({
       title: "Solicitação enviada com sucesso!",
-      description: "Entraremos em contato em breve para agendar o atendimento.",
+      description: "Nossa equipe técnica entrará em contato em breve.",
     });
 
     setFormData({
       nome: "",
       email: "",
       telefone: "",
-      tipoEquipamento: "",
+      equipamento: "",
       marca: "",
       modelo: "",
       problema: "",
@@ -53,35 +53,35 @@ const Manutencao = () => {
     });
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
   };
 
-  const handleSelectChange = (field: string, value: string) => {
+  const handleSelectChange = (name: string, value: string) => {
     setFormData({
       ...formData,
-      [field]: value
+      [name]: value
     });
   };
 
-  const services = [
+  const features = [
+    {
+      icon: CheckCircle,
+      title: "Diagnóstico Gratuito",
+      description: "Análise completa sem custos para identificar o problema"
+    },
     {
       icon: Clock,
-      title: "Diagnóstico Rápido",
-      description: "Identificação do problema em até 24h"
+      title: "Atendimento Rápido",
+      description: "Resposta em até 24h para solicitações de manutenção"
     },
     {
-      icon: Shield,
-      title: "Garantia Estendida",
-      description: "90 dias de garantia em todos os serviços"
-    },
-    {
-      icon: Star,
+      icon: Users,
       title: "Técnicos Certificados",
-      description: "Profissionais especializados e experientes"
+      description: "Equipe especializada e certificada pelos fabricantes"
     }
   ];
 
@@ -89,53 +89,66 @@ const Manutencao = () => {
     <div className="min-h-screen bg-gray-50">
       <Header />
 
-      {/* Hero Section */}
-      <section className="pt-24 pb-16 px-4 bg-gradient-to-r from-tectonner-blue to-blue-600 text-white">
-        <div className="container mx-auto text-center max-w-4xl">
-          <div className="flex items-center justify-center mb-6">
-            <Wrench className="w-12 h-12 mr-4" />
-            <h1 className="text-5xl md:text-6xl font-bold">Manutenção</h1>
+      {/* Hero Banner */}
+      <section className="relative h-80 overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url('https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=1200&h=600&fit=crop')`
+          }}
+        />
+        <div className="absolute inset-0 bg-tectonner-blue/70" />
+        <div className="relative z-10 container mx-auto px-4 h-full flex items-center justify-center text-center">
+          <div className="max-w-4xl animate-fade-in">
+            <div className="w-16 h-16 mx-auto mb-6 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-sm">
+              <Wrench className="w-8 h-8 text-white" />
+            </div>
+            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">Manutenção</h1>
+            <p className="text-xl md:text-2xl text-white/90 font-light leading-relaxed">
+              Suporte técnico especializado para seus equipamentos de TI
+            </p>
           </div>
-          <p className="text-xl md:text-2xl font-light">
-            Serviços especializados para seus equipamentos
-          </p>
         </div>
       </section>
 
-      {/* Services Overview */}
+      {/* Features Section */}
       <section className="py-16 px-4 bg-white">
-        <div className="container mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-tectonner-dark mb-4">
-              Por que escolher nossos serviços?
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-12">
-            {services.map((service, index) => (
-              <div key={service.title} className="text-center">
-                <div className="w-16 h-16 mx-auto mb-4 bg-tectonner-blue rounded-2xl flex items-center justify-center">
-                  <service.icon className="w-8 h-8 text-white" />
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid md:grid-cols-3 gap-8">
+            {features.map((feature, index) => (
+              <div
+                key={feature.title}
+                className="text-center fade-in-on-scroll"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <div className="w-16 h-16 mx-auto mb-6 bg-tectonner-green rounded-2xl flex items-center justify-center">
+                  <feature.icon className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-tectonner-dark mb-2">{service.title}</h3>
-                <p className="text-gray-600">{service.description}</p>
+                <h3 className="text-xl font-bold text-tectonner-dark mb-4">{feature.title}</h3>
+                <p className="text-gray-600">{feature.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Maintenance Form */}
+      {/* Form Section */}
       <section className="py-16 px-4">
         <div className="container mx-auto max-w-3xl">
-          <Card>
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-tectonner-dark mb-4">
+              Solicite um Orçamento
+            </h2>
+            <p className="text-lg text-gray-600">
+              Descreva o problema do seu equipamento e nossa equipe entrará em contato
+            </p>
+          </div>
+
+          <Card className="shadow-xl">
             <CardHeader>
-              <CardTitle className="text-3xl text-tectonner-dark text-center">
-                Solicitar Manutenção
+              <CardTitle className="text-2xl text-tectonner-dark text-center">
+                Formulário de Manutenção
               </CardTitle>
-              <p className="text-center text-gray-600">
-                Descreva o problema e entraremos em contato
-              </p>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -148,12 +161,12 @@ const Manutencao = () => {
                       name="nome"
                       placeholder="Digite seu nome"
                       value={formData.nome}
-                      onChange={handleInputChange}
+                      onChange={handleChange}
                       required
                       className="h-12"
                     />
                   </div>
-
+                  
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Email *
@@ -163,58 +176,55 @@ const Manutencao = () => {
                       type="email"
                       placeholder="Digite seu email"
                       value={formData.email}
-                      onChange={handleInputChange}
+                      onChange={handleChange}
                       required
                       className="h-12"
                     />
                   </div>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Telefone *
-                    </label>
-                    <Input
-                      name="telefone"
-                      placeholder="(11) 98765-4321"
-                      value={formData.telefone}
-                      onChange={handleInputChange}
-                      required
-                      className="h-12"
-                    />
-                  </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Telefone *
+                  </label>
+                  <Input
+                    name="telefone"
+                    placeholder="(11) 98765-4321"
+                    value={formData.telefone}
+                    onChange={handleChange}
+                    required
+                    className="h-12"
+                  />
+                </div>
 
+                <div className="grid md:grid-cols-3 gap-6">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Tipo de Equipamento *
                     </label>
-                    <Select onValueChange={(value) => handleSelectChange("tipoEquipamento", value)}>
+                    <Select onValueChange={(value) => handleSelectChange("equipamento", value)}>
                       <SelectTrigger className="h-12">
-                        <SelectValue placeholder="Selecione o tipo" />
+                        <SelectValue placeholder="Selecione" />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="notebook">Notebook</SelectItem>
-                        <SelectItem value="desktop">Desktop</SelectItem>
                         <SelectItem value="impressora">Impressora</SelectItem>
                         <SelectItem value="celular">Celular</SelectItem>
-                        <SelectItem value="tablet">Tablet</SelectItem>
+                        <SelectItem value="toner">Toner</SelectItem>
                         <SelectItem value="outro">Outro</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
-                </div>
 
-                <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Marca
                     </label>
                     <Input
                       name="marca"
-                      placeholder="Ex: HP, Dell, Apple..."
+                      placeholder="Ex: HP, Dell, Canon"
                       value={formData.marca}
-                      onChange={handleInputChange}
+                      onChange={handleChange}
                       className="h-12"
                     />
                   </div>
@@ -225,29 +235,12 @@ const Manutencao = () => {
                     </label>
                     <Input
                       name="modelo"
-                      placeholder="Ex: Inspiron 15, MacBook Air..."
+                      placeholder="Ex: LaserJet Pro"
                       value={formData.modelo}
-                      onChange={handleInputChange}
+                      onChange={handleChange}
                       className="h-12"
                     />
                   </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Urgência
-                  </label>
-                  <Select onValueChange={(value) => handleSelectChange("urgencia", value)}>
-                    <SelectTrigger className="h-12">
-                      <SelectValue placeholder="Selecione a urgência" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="baixa">Baixa - Posso aguardar alguns dias</SelectItem>
-                      <SelectItem value="media">Média - Alguns dias úteis</SelectItem>
-                      <SelectItem value="alta">Alta - Preciso com urgência</SelectItem>
-                      <SelectItem value="critica">Crítica - Emergencial</SelectItem>
-                    </SelectContent>
-                  </Select>
                 </div>
 
                 <div>
@@ -256,19 +249,36 @@ const Manutencao = () => {
                   </label>
                   <Textarea
                     name="problema"
-                    placeholder="Descreva detalhadamente o problema que está enfrentando..."
+                    placeholder="Descreva detalhadamente o problema apresentado pelo equipamento..."
                     value={formData.problema}
-                    onChange={handleInputChange}
+                    onChange={handleChange}
                     required
-                    rows={4}
+                    className="min-h-32"
                   />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Nível de Urgência
+                  </label>
+                  <Select onValueChange={(value) => handleSelectChange("urgencia", value)}>
+                    <SelectTrigger className="h-12">
+                      <SelectValue placeholder="Selecione a urgência" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="baixa">Baixa - Até 7 dias</SelectItem>
+                      <SelectItem value="media">Média - Até 3 dias</SelectItem>
+                      <SelectItem value="alta">Alta - Até 24h</SelectItem>
+                      <SelectItem value="critica">Crítica - Imediato</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
 
                 <Button 
                   type="submit" 
-                  className="w-full h-12 bg-tectonner-blue hover:bg-blue-700 text-lg font-semibold"
+                  className="w-full h-12 bg-tectonner-green hover:bg-green-700 text-lg font-semibold"
                 >
-                  Solicitar Manutenção
+                  Solicitar Orçamento
                 </Button>
               </form>
             </CardContent>

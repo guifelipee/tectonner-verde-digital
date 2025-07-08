@@ -69,19 +69,31 @@ const Cadastro = () => {
     <div className="min-h-screen bg-gray-50">
       <Header />
 
-      <section className="pt-24 pb-16 px-4">
-        <div className="container mx-auto max-w-2xl">
-          <div className="text-center mb-8">
-            <div className="w-16 h-16 mx-auto mb-4 bg-tectonner-green rounded-2xl flex items-center justify-center">
+      {/* Hero Banner */}
+      <section className="relative h-80 overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url('https://images.unsplash.com/photo-1556761175-b413da4baf72?w=1200&h=600&fit=crop')`
+          }}
+        />
+        <div className="absolute inset-0 bg-tectonner-green/80" />
+        <div className="relative z-10 container mx-auto px-4 h-full flex items-center justify-center text-center">
+          <div className="max-w-3xl animate-fade-in">
+            <div className="w-16 h-16 mx-auto mb-6 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-sm">
               <UserPlus className="w-8 h-8 text-white" />
             </div>
-            <h1 className="text-4xl font-bold text-tectonner-dark mb-4">Cadastro</h1>
-            <p className="text-lg text-gray-600">
-              Junte-se à TECTONNER e tenha acesso a todas as nossas soluções
+            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">Cadastro</h1>
+            <p className="text-xl md:text-2xl text-white/90 font-light leading-relaxed">
+              Junte-se à TECTONNER e tenha acesso a todas as nossas soluções tecnológicas sustentáveis
             </p>
           </div>
+        </div>
+      </section>
 
-          <Card>
+      <section className="py-16 px-4">
+        <div className="container mx-auto max-w-2xl">
+          <Card className="shadow-xl">
             <CardHeader>
               <CardTitle className="text-2xl text-tectonner-dark text-center">
                 Crie sua conta

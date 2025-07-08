@@ -4,89 +4,72 @@ import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { RefreshCw, Monitor, Smartphone, Printer, CheckCircle, Calendar } from "lucide-react";
+import { Building, CheckCircle, Clock, HeartHandshake } from "lucide-react";
 
 const Locacao = () => {
-  const rentalOptions = [
+  const plans = [
     {
       id: 1,
-      name: "Notebook Dell Inspiron",
-      category: "notebooks",
-      monthlyPrice: "R$ 199,00",
-      weeklyPrice: "R$ 79,00",
-      dailyPrice: "R$ 19,90",
-      image: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=500",
-      specs: ["Intel i5", "8GB RAM", "256GB SSD"],
-      popular: true
+      name: "Plano Básico",
+      equipment: "Impressora Multifuncional",
+      monthlyPrice: "R$ 149,00",
+      description: "HP DeskJet 3776 - Impressão, cópia e scanner",
+      features: [
+        "Impressão colorida",
+        "Wi-Fi integrado",
+        "Manutenção inclusa",
+        "Suporte técnico 24/7"
+      ],
+      popular: false
     },
     {
       id: 2,
-      name: "MacBook Air M2",
-      category: "notebooks",
-      monthlyPrice: "R$ 599,00",
-      weeklyPrice: "R$ 179,00",
-      dailyPrice: "R$ 39,90",
-      image: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=500",
-      specs: ["Apple M2", "8GB RAM", "256GB SSD"],
-      premium: true
+      name: "Plano Profissional",
+      equipment: "Notebook + Impressora",
+      monthlyPrice: "R$ 399,00",
+      description: "Dell Inspiron 15 + HP LaserJet Pro",
+      features: [
+        "Notebook Intel i5, 8GB RAM",
+        "Impressora laser monocromática",
+        "Manutenção inclusa",
+        "Suporte técnico prioritário",
+        "Substituição em 24h"
+      ],
+      popular: true
     },
     {
       id: 3,
-      name: "Impressora HP LaserJet",
-      category: "impressoras",
-      monthlyPrice: "R$ 89,00",
-      weeklyPrice: "R$ 29,00",
-      dailyPrice: "R$ 7,90",
-      image: "https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae?w=500",
-      specs: ["Wi-Fi", "Duplex", "30 ppm"]
-    },
-    {
-      id: 4,
-      name: "iPhone 15",
-      category: "celulares",
-      monthlyPrice: "R$ 399,00",
-      weeklyPrice: "R$ 119,00",
-      dailyPrice: "R$ 24,90",
-      image: "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=500",
-      specs: ["128GB", "5G", "Face ID"]
-    },
-    {
-      id: 5,
-      name: "Notebook Lenovo ThinkPad",
-      category: "notebooks",
-      monthlyPrice: "R$ 299,00",
-      weeklyPrice: "R$ 99,00",
-      dailyPrice: "R$ 22,90",
-      image: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=500",
-      specs: ["Intel i7", "16GB RAM", "512GB SSD"]
-    },
-    {
-      id: 6,
-      name: "Multifuncional Canon",
-      category: "impressoras",
-      monthlyPrice: "R$ 129,00",
-      weeklyPrice: "R$ 39,00",
-      dailyPrice: "R$ 9,90",
-      image: "https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae?w=500",
-      specs: ["Scanner", "Copiadora", "Wi-Fi"]
+      name: "Plano Empresarial",
+      equipment: "Pacote Completo",
+      monthlyPrice: "R$ 899,00",
+      description: "3 Notebooks + 2 Impressoras + Suporte",
+      features: [
+        "3 Notebooks profissionais",
+        "2 Impressoras multifuncionais",
+        "Setup e instalação",
+        "Manutenção preventiva",
+        "Suporte técnico dedicado",
+        "Substituição imediata"
+      ],
+      popular: false
     }
   ];
 
   const benefits = [
     {
       icon: CheckCircle,
-      title: "Sem Compromisso",
-      description: "Cancele a qualquer momento"
+      title: "Sem Investimento Inicial",
+      description: "Comece a usar sem grandes desembolsos"
     },
     {
-      icon: Monitor,
-      title: "Equipamentos Novos",
-      description: "Dispositivos sempre atualizados"
+      icon: Clock,
+      title: "Flexibilidade Total",
+      description: "Contratos adaptáveis às suas necessidades"
     },
     {
-      icon: Calendar,
-      title: "Flexibilidade",
-      description: "Períodos de 1 dia a 24 meses"
+      icon: HeartHandshake,
+      title: "Suporte Completo",
+      description: "Manutenção e suporte técnico inclusos"
     }
   ];
 
@@ -94,35 +77,51 @@ const Locacao = () => {
     <div className="min-h-screen bg-gray-50">
       <Header />
 
-      {/* Hero Section */}
-      <section className="pt-24 pb-16 px-4 bg-gradient-to-r from-purple-500 to-purple-700 text-white">
-        <div className="container mx-auto text-center max-w-4xl">
-          <div className="flex items-center justify-center mb-6">
-            <RefreshCw className="w-12 h-12 mr-4" />
-            <h1 className="text-5xl md:text-6xl font-bold">Locação</h1>
+      {/* Hero Banner */}
+      <section className="relative h-80 overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&h=600&fit=crop')`
+          }}
+        />
+        <div className="absolute inset-0 bg-black/50" />
+        <div className="relative z-10 container mx-auto px-4 h-full flex items-center justify-center text-center">
+          <div className="max-w-4xl animate-fade-in">
+            <div className="w-16 h-16 mx-auto mb-6 bg-tectonner-green/90 rounded-2xl flex items-center justify-center backdrop-blur-sm">
+              <Building className="w-8 h-8 text-white" />
+            </div>
+            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">Locação</h1>
+            <p className="text-xl md:text-2xl text-white/90 font-light leading-relaxed">
+              Equipamentos de TI profissionais com flexibilidade e suporte completo
+            </p>
           </div>
-          <p className="text-xl md:text-2xl font-light">
-            Alugue equipamentos com total flexibilidade
-          </p>
         </div>
       </section>
 
       {/* Benefits Section */}
       <section className="py-16 px-4 bg-white">
-        <div className="container mx-auto">
+        <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-tectonner-dark mb-4">
-              Vantagens da Locação TECTONNER
+            <h2 className="text-4xl font-bold text-tectonner-dark mb-4">
+              Por que escolher a locação?
             </h2>
+            <p className="text-lg text-gray-600">
+              Vantagens que fazem a diferença para o seu negócio
+            </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-8">
             {benefits.map((benefit, index) => (
-              <div key={benefit.title} className="text-center">
-                <div className="w-16 h-16 mx-auto mb-4 bg-purple-500 rounded-2xl flex items-center justify-center">
+              <div
+                key={benefit.title}
+                className="text-center fade-in-on-scroll"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <div className="w-16 h-16 mx-auto mb-6 bg-tectonner-green rounded-2xl flex items-center justify-center">
                   <benefit.icon className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-tectonner-dark mb-2">{benefit.title}</h3>
+                <h3 className="text-xl font-bold text-tectonner-dark mb-4">{benefit.title}</h3>
                 <p className="text-gray-600">{benefit.description}</p>
               </div>
             ))}
@@ -130,123 +129,74 @@ const Locacao = () => {
         </div>
       </section>
 
-      {/* Rental Options */}
+      {/* Plans Section */}
       <section className="py-16 px-4">
-        <div className="container mx-auto">
+        <div className="container mx-auto max-w-7xl">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-tectonner-dark mb-4">
-              Equipamentos Disponíveis
+            <h2 className="text-4xl font-bold text-tectonner-dark mb-4">
+              Planos de Locação
             </h2>
             <p className="text-lg text-gray-600">
-              Escolha o período ideal para suas necessidades
+              Escolha o plano ideal para sua empresa
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {rentalOptions.map((item) => (
-              <Card key={item.id} className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative">
-                <CardContent className="p-0">
-                  {/* Badges */}
-                  <div className="absolute top-4 left-4 z-10 space-y-2">
-                    {item.popular && (
-                      <Badge className="bg-tectonner-green">
-                        Mais Popular
-                      </Badge>
-                    )}
-                    {item.premium && (
-                      <Badge className="bg-purple-500">
-                        Premium
-                      </Badge>
-                    )}
-                  </div>
-
-                  {/* Product Image */}
-                  <div className="relative overflow-hidden rounded-t-lg">
-                    <img
-                      src={item.image}
-                      alt={item.name}
-                      className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-
-                  {/* Product Info */}
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-tectonner-dark mb-3">
-                      {item.name}
-                    </h3>
-
-                    {/* Specs */}
+          <div className="grid md:grid-cols-3 gap-8">
+            {plans.map((plan, index) => (
+              <Card 
+                key={plan.id} 
+                className={`relative group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 ${
+                  plan.popular ? 'ring-2 ring-tectonner-green' : ''
+                }`}
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                {plan.popular && (
+                  <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-tectonner-green px-6 py-1">
+                    Mais Popular
+                  </Badge>
+                )}
+                
+                <CardContent className="p-8">
+                  <div className="text-center mb-8">
+                    <h3 className="text-2xl font-bold text-tectonner-dark mb-2">{plan.name}</h3>
+                    <p className="text-gray-600 mb-4">{plan.equipment}</p>
                     <div className="mb-4">
-                      <div className="flex flex-wrap gap-1">
-                        {item.specs.map((spec, index) => (
-                          <Badge key={index} variant="outline" className="text-xs">
-                            {spec}
-                          </Badge>
-                        ))}
-                      </div>
+                      <span className="text-4xl font-bold text-tectonner-green">{plan.monthlyPrice}</span>
+                      <span className="text-gray-600">/mês</span>
                     </div>
-
-                    {/* Pricing */}
-                    <div className="space-y-2 mb-6">
-                      <div className="flex justify-between">
-                        <span className="text-sm text-gray-600">Diária:</span>
-                        <span className="font-semibold text-tectonner-green">{item.dailyPrice}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-sm text-gray-600">Semanal:</span>
-                        <span className="font-semibold text-tectonner-green">{item.weeklyPrice}</span>
-                      </div>
-                      <div className="flex justify-between border-t pt-2">
-                        <span className="text-sm font-medium">Mensal:</span>
-                        <span className="text-lg font-bold text-tectonner-green">{item.monthlyPrice}</span>
-                      </div>
-                    </div>
-
-                    {/* Action Button */}
-                    <Button className="w-full bg-purple-500 hover:bg-purple-600">
-                      Solicitar Locação
-                    </Button>
+                    <p className="text-sm text-gray-600 mb-6">{plan.description}</p>
                   </div>
+
+                  <ul className="space-y-3 mb-8">
+                    {plan.features.map((feature, featureIndex) => (
+                      <li key={featureIndex} className="flex items-center">
+                        <CheckCircle className="w-5 h-5 text-tectonner-green mr-3 flex-shrink-0" />
+                        <span className="text-gray-700">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <Button 
+                    className={`w-full h-12 font-semibold ${
+                      plan.popular 
+                        ? 'bg-tectonner-green hover:bg-green-700' 
+                        : 'bg-gray-800 hover:bg-gray-900 text-white'
+                    }`}
+                  >
+                    Solicitar Proposta
+                  </Button>
                 </CardContent>
               </Card>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* How it Works */}
-      <section className="py-16 px-4 bg-white">
-        <div className="container mx-auto max-w-4xl">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-tectonner-dark mb-4">
-              Como Funciona
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-12 h-12 mx-auto mb-4 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
-                1
-              </div>
-              <h3 className="text-lg font-bold text-tectonner-dark mb-2">Escolha</h3>
-              <p className="text-gray-600">Selecione o equipamento e período desejado</p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-12 h-12 mx-auto mb-4 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
-                2
-              </div>
-              <h3 className="text-lg font-bold text-tectonner-dark mb-2">Solicite</h3>
-              <p className="text-gray-600">Entre em contato e formalize o aluguel</p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-12 h-12 mx-auto mb-4 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
-                3
-              </div>
-              <h3 className="text-lg font-bold text-tectonner-dark mb-2">Receba</h3>
-              <p className="text-gray-600">Entregamos e configuramos na sua casa ou empresa</p>
-            </div>
+          <div className="text-center mt-12">
+            <p className="text-gray-600 mb-4">
+              Precisa de um plano personalizado?
+            </p>
+            <Button variant="outline" className="border-tectonner-green text-tectonner-green hover:bg-tectonner-green hover:text-white">
+              Fale com Nossos Especialistas
+            </Button>
           </div>
         </div>
       </section>
